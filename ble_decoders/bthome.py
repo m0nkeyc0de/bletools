@@ -5,6 +5,8 @@ from cryptography.exceptions import InvalidTag
 
 from bleak.backends.scanner import AdvertisementData
 
+ENV_BTHOME_KEY = "BTHOME_KEY"
+
 def bthome_decoder(adv_data:AdvertisementData, adv_mac:str) -> dict:
     """
     Parse the provided BTHome payload (UUID == FCD2)
@@ -15,7 +17,7 @@ def bthome_decoder(adv_data:AdvertisementData, adv_mac:str) -> dict:
     ret = {}
 
     # Try to get encryption key from environment
-    encryption_key = os.environ.get('BTHOME_KEY')
+    encryption_key = os.environ.get(ENV_BTHOME_KEY)
 
     for _, raw_bytes in adv_data.service_data.items():
         raw_hex = raw_bytes.hex().upper()

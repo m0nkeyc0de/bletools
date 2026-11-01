@@ -1,7 +1,7 @@
 from typing import Any
 from bleak.backends.scanner import AdvertisementData
 
-from .bthome import bthome_decoder
+from .bthome import bthome_decoder, ENV_BTHOME_KEY
 
 DECODERS = {
     'FCD2' : bthome_decoder,  # Allterco (BTHome)
